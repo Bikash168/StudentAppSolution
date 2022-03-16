@@ -1,4 +1,11 @@
+using StudentApp.Services;
+
 var builder = WebApplication.CreateBuilder(args);
+
+
+
+//register services
+builder.Services.AddSingleton<IStudentService, StudentServices>();
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
