@@ -1,0 +1,54 @@
+﻿@using StudentApp.Models
+@Model StudentApp.AllModels
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+<div class="text-center">
+
+
+    <div class="row">
+
+        <div class="col-lg-12">
+
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">StudentID</th>
+                        <th scope="col">Student Name</th>
+                        <th scope="col">Email Address</th>
+                        <th scope="col">City</th>
+                        <th scope="col">CreatedOn</th>
+                        </tr>
+                </thead>
+                <tbody>
+                    @{
+                        if(Model.StudentsList!=null && Model.StudentsList.Count > 0)
+                        {
+                            foreach(var iteam in Model.StudentList)
+                            {
+                                <tr>
+                   <td>@iteam.StudentID</td>
+                   <td>@iteam.FullName</td>
+                   <td>@iteam.EmailAddress</td>
+                   <td>@iteam.City</td>
+                   <td>@iteam.CreateOn</td>
+                       
+                        
+                    </tr> 
+                            }
+                        }
+                    }
+                   
+                   
+            </table>
+
+        </div>
+
+
+
+    </div>
+
+
+
+</div>

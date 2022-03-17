@@ -31,19 +31,44 @@ namespace StudentApp.Services
                 return new SqlConnection(ConnectionString);
             }
         }
-
+        //Insert sp
         public string InsertStudent(Student model)
         {
             using(IDbConnection dbConnection = Connection)
             {
                dbConnection.Open();
 
-                var student = dbConnection.Query<List<Student>>("sp_InsertStudentRecord", model, commandType: CommandType.StoredProcedure).ToList();
+                var student = dbConnection.Query<Student>("sp_InsertStudentRecord", model, commandType: CommandType.StoredProcedure).ToList();
 
                 dbConnection.Close();
 
             }
             return "";
+
+        }
+        //get table sp
+        public  List<Student>GetStudentsList()
+        {
+            List<Student> result = new List<Student>();
+            try
+            {
+                using (IDbConnection dbConnection = Connection)
+                {
+                    dbConnection.Open();
+
+                    result = dbConnection.Query<Student>("sp_GetStudentList", commandType: CommandType.StoredProcedure).ToList();
+
+                    dbConnection.Close();
+                    return result;
+                }
+
+            }
+            catch (Exception ex)
+            {
+                string errorMsg = ex.Message;
+                return result;
+            }
+
 
         }
 
@@ -54,6 +79,7 @@ namespace StudentApp.Services
     public interface IStudentService
     {
         public string InsertStudent(Student model);
+        public List<Student> GetStudentsList();
 
     }
 
