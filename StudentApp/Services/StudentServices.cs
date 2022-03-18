@@ -2,6 +2,7 @@
 using StudentApp.Models;
 using System.Data;
 using System.Data.SqlClient;
+using System.Configuration;
 
 namespace StudentApp.Services
 {
@@ -16,7 +17,7 @@ namespace StudentApp.Services
         public StudentServices(IConfiguration configuration)
         {
             _configuration = configuration;
-            ConnectionString = _configuration.GetConnectionString("DBConnection");
+            ConnectionString = _configuration.GetConnectionString("dbconn");
             providerName = "System.Data.SqlClient";
         }
 

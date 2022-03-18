@@ -1,5 +1,5 @@
 ﻿@using StudentApp.Models
-@Model StudentApp.AllModels
+@model AllModels
 
 @{
     ViewData["Title"] = "Home Page";
@@ -19,28 +19,28 @@
                         <th scope="col">Email Address</th>
                         <th scope="col">City</th>
                         <th scope="col">CreatedOn</th>
-                        </tr>
+                    </tr>
                 </thead>
                 <tbody>
                     @{
-                        if(Model.StudentsList!=null && Model.StudentsList.Count > 0)
+                        if (Model.StudentsList != null && Model.StudentsList.Count > 0)
                         {
-                            foreach(var iteam in Model.StudentList)
+                            foreach (var iteam in Model.StudentsList)
                             {
                                 <tr>
-                   <td>@iteam.StudentID</td>
-                   <td>@iteam.FullName</td>
-                   <td>@iteam.EmailAddress</td>
-                   <td>@iteam.City</td>
-                   <td>@iteam.CreateOn</td>
-                       
-                        
-                    </tr> 
+                                    <td>@iteam.StudentID</td>
+                                    <td>@iteam.FullName</td>
+                                    <td>@iteam.EmailAddress</td>
+                                    <td>@iteam.City</td>
+                                    <td>@iteam.CreateOn</td>
+
+
+                                </tr>
                             }
                         }
                     }
-                   
-                   
+
+
             </table>
 
         </div>
