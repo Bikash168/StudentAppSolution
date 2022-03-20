@@ -12,6 +12,8 @@
 
         public DateTime CreateOn { get; set; }
 
+        public int CreatedBy { get; set; }
+
         public string? Response { get; set; }
 
 

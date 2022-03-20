@@ -35,17 +35,35 @@ namespace StudentApp.Services
         //Insert sp
         public string InsertStudent(Student model)
         {
-            using(IDbConnection dbConnection = Connection)
+            string result = "";
+
+            try
             {
-               dbConnection.Open();
+                using (IDbConnection dbConnection = Connection)
+                {
+                    dbConnection.Open();
 
-                var student = dbConnection.Query<Student>("sp_InsertStudentRecord", model, commandType: CommandType.StoredProcedure).ToList();
+                    var student = dbConnection.Query<Student>("sp_InsertStudentRecord", new {FullName=model.FullName, EmailAddress=model.EmailAddress, City=model.City, CreatedBy=1 }, commandType: CommandType.StoredProcedure).ToList();
+                    if(student != null &&  student.FirstOrDefault().Response == "SAVED SUCCESSFULLY")
+                    {
+                        result = "SAVED SUCCESSFULLY";
+                    }
+                      
+                    dbConnection.Close();
+                    return result;
 
-                dbConnection.Close();
+
+                }
+                
 
             }
-            return "";
+            catch (Exception ex)
+            {
 
+                string errorMsg = ex.Message;
+                return errorMsg;
+
+            }
         }
         //get table sp
         public  List<Student>GetStudentsList()
